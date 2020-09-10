@@ -1,0 +1,54 @@
+{
+  "instruments": {
+    "brass": [
+      "french_horn",
+      "trombone",
+      "trumpet",
+      "tuba"
+    ],
+    "woodwinds": [
+      "bassoon",
+      "contrabassoon",
+      "bass_clarinet",
+      "clarinet",
+      "cor_anglais",
+      "flute",
+      "oboe",
+      "saxophone"
+    ]
+  },
+  "translations": {
+    "nl": {
+      "brass": "Koperblazers",
+      "woodwinds": "Houtblazers",
+      "french_horn": "Hoorn",
+      "trombone": "Trombone",
+      "trumpet": "Trompet",
+      "tuba": "Tuba",
+      "bassoon": "Fagot",
+      "contrabassoon": "Contrafagot",
+      "bass_clarinet": "Basklarinet",
+      "clarinet": "Klarinet",
+      "cor_anglais": "Althobo",
+      "flute": "Dwarsfluit",
+      "oboe": "Hobo",
+      "saxophone": "Saxofoon"
+    },
+    "en": {
+      "brass": "Brass",
+      "woodwinds": "Woodwinds",
+      "french_horn": "French Horn",
+      "trombone": "Trombone",
+      "trumpet": "Trumpet",
+      "tuba": "Tuba",
+      "bassoon": "Bassoon",
+      "contrabassoon": "Contrabassoon",
+      "bass_clarinet": "Bass Clarinet",
+      "clarinet": "Clarinet",
+      "cor_anglais": "Cor Anglais",
+      "flute": "Flute",
+      "oboe": "Oboe",
+      "saxophone": "Saxophone"
+    }
+  }
+}

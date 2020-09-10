@@ -1,0 +1,44 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color:#DDDDDD;
+    overflow: hidden;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+@font-face {
+    font-family: '8BitBold';
+    src: url("../resources/fonts/8bit_bold.ttf");
+}
+@font-face {
+    font-family: '8BitOutline';
+    src: url("../resources/fonts/8bit_bold_outline.ttf");
+}
+@font-face {
+    font-family: '8BitReg';
+    src: url("../resources/fonts/8bit_1.ttf");
+}
+
+.bit-bold {
+    font-family: '8BitBold', sans-serif;
+}
+
+.bit-regular {
+    font-family: '8BitReg', sans-serif;
+}
+
+.bit-outline {
+    font-family: '8BitOutline', sans-serif;
+}
+
+.infoBar {
+    height: 100px;
+    width: 100vw;
+    background-color: black;
+    border-top: 4px solid white;
+    position: absolute;
+    bottom: 0;
+}

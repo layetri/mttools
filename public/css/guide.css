@@ -1,0 +1,53 @@
+.text-gray-200 {
+    color: #edf2f7 !important;
+}
+
+p>code, li>code, span>code, pre>code {
+    font-size: 0.85rem !important;
+}
+
+code {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem !important;
+    border-radius: 0.25rem !important;
+    background-color: #edf2f7 !important;
+}
+
+pre {
+    border-radius: 0.5rem;
+    white-space: pre-wrap;
+    background-color: #edf2f7 !important;
+ }
+
+a {
+    font-weight: 500 !important;
+    color: #319795 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300 !important;
+}
+
+h1 {
+    font-size: 1.875rem !important;
+}
+
+h3 {
+    font-size: 1.5rem !important;
+}
+
+h5 {
+    font-size: 1.25rem !important;
+}
+
+ul {
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+    margin-left: 1rem !important;
+}
+
+ol {
+    list-style-type: decimal !important;
+    list-style-position: outside !important;
+    margin-left: 1rem !important;
+}
