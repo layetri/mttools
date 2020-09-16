@@ -15,6 +15,13 @@
 
         <span class="font-bold text-red-500" v-if="recording">listening...</span>
 
+        <br>
+
+        <label>
+          <small><b>BPM</b>:</small><br>
+          <input type="number" v-model="bpm" min="60" max="250">
+        </label>
+
         <div class="p-2 rounded-lg bg-blue-100 mt-3">
           <h4 class="text-lg text-blue-600 font-bold">Filter</h4>
           <label>
@@ -34,10 +41,26 @@
           <div class="p-4 bg-orange-200 rounded-md border-r-2 border-orange-500">
             <h4 class="text-xl text-orange-600 font-bold">Left</h4>
 
-            <label>
+            <div>
+              <small><b>Delay Time type</b>:</small><br>
+              <button class="font-bold mr-4" :class="[params.delayTimeMode.left === 'notes' ? 'text-orange-500' : 'text-grey-500']" @click="params.delayTimeMode.left = 'notes'">Notes</button>
+
+              <button class="font-bold" :class="[params.delayTimeMode.left === 'seconds' ? 'text-orange-500' : 'text-grey-500']" @click="params.delayTimeMode.left = 'seconds'">Seconds</button>
+            </div>
+
+            <label v-if="params.delayTimeMode.left === 'seconds'">
               <small><b>Delay Time</b>: {{ params.delay_time.left * 1000 }}ms</small><br>
               <input type="range" @change="delayFX.set('delay_time', 'left', params.delay_time.left)" v-model="params.delay_time.left" min="0" max="1" step="0.001">
-            </label><br>
+            </label>
+
+            <label v-else-if="params.delayTimeMode.left === 'notes'">
+              <small><b>Delay Time</b>: {{ params.delay_time.left * 1000 }}ms</small><br>
+              <button class="mr-2" v-for="note in notevals" @click="sendDelayNotes('left', note)">
+                <small :class="[params.delay_time.left === noteToTime(note) ? 'font-bold' : '']">{{note}}</small>
+              </button>
+            </label>
+
+            <br>
 
             <label>
               <small><b>Feedback</b>: {{ Math.round(params.feedback.left * 100) }}%</small><br>
@@ -55,11 +78,28 @@
         <div class="w-1/2 pl-2">
           <div class="p-4 bg-green-200 rounded-md border-r-2 border-green-500">
             <h4 class="text-xl text-green-600 font-bold">Right</h4>
+            <br>
 
-            <label>
+            <div>
+              <small><b>Delay Time type</b>:</small><br>
+              <button class="font-bold mr-4" :class="[params.delayTimeMode.right === 'notes' ? 'text-green-500' : 'text-grey-500']" @click="params.delayTimeMode.right = 'notes'">Notes</button>
+
+              <button class="font-bold" :class="[params.delayTimeMode.right === 'seconds' ? 'text-green-500' : 'text-grey-500']" @click="params.delayTimeMode.right = 'seconds'">Seconds</button>
+            </div>
+
+            <label v-if="params.delayTimeMode.right === 'seconds'">
               <small><b>Delay Time</b>: {{ params.delay_time.right * 1000 }}ms</small><br>
               <input type="range" @change="delayFX.set('delay_time', 'right', params.delay_time.right)" v-model="params.delay_time.right" min="0" max="1" step="0.001">
-            </label><br>
+            </label>
+
+            <label v-else-if="params.delayTimeMode.right === 'notes'">
+              <small><b>Delay Time</b>: {{ params.delay_time.right * 1000 }}ms</small><br>
+              <button class="mr-2" v-for="note in notevals" @click="sendDelayNotes('right', note)">
+                <small :class="[params.delay_time.right === noteToTime(note) ? 'font-bold' : '']">{{note}}</small>
+              </button>
+            </label>
+
+            <br>
 
             <label>
               <small><b>Feedback</b>: {{ Math.round(params.feedback.right * 100) }}%</small><br>
@@ -91,6 +131,7 @@
     data() {
       return {
         ready: false,
+        bpm: 120,
         mic: null,
         inputFilter: null,
         recording: false,
@@ -98,6 +139,7 @@
         gainNode: null,
         osc: null,
         player: null,
+        notevals: [1, 2, 4, 8, 16, 32],
         params: {
           feedback: {
             left: 0,
@@ -110,6 +152,10 @@
           delay_time: {
             left: 0.01,
             right: 0.05
+          },
+          delayTimeMode: {
+            left: 'seconds',
+            right: 'seconds'
           },
           input_filter: {
             frequency: 1000,
@@ -153,6 +199,14 @@
             this.recording = false;
           });
         }
+      },
+      noteToTime(note) {
+        return 60.0 / this.bpm / (note / 4);
+      },
+      sendDelayNotes(channel, length) {
+        let time = this.noteToTime(length);
+        this.delayFX.set('delay_time', channel, time);
+        this.params.delay_time[channel] = time;
       }
     }
   }

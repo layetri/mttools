@@ -5260,6 +5260,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5267,6 +5307,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       ready: false,
+      bpm: 120,
       mic: null,
       inputFilter: null,
       recording: false,
@@ -5274,6 +5315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       gainNode: null,
       osc: null,
       player: null,
+      notevals: [1, 2, 4, 8, 16, 32],
       params: {
         feedback: {
           left: 0,
@@ -5286,6 +5328,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         delay_time: {
           left: 0.01,
           right: 0.05
+        },
+        delayTimeMode: {
+          left: 'seconds',
+          right: 'seconds'
         },
         input_filter: {
           frequency: 1000,
@@ -5344,6 +5390,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this2.recording = false;
         });
       }
+    },
+    noteToTime: function noteToTime(note) {
+      return 60.0 / this.bpm / (note / 4);
+    },
+    sendDelayNotes: function sendDelayNotes(channel, length) {
+      var time = this.noteToTime(length);
+      this.delayFX.set('delay_time', channel, time);
+      this.params.delay_time[channel] = time;
     }
   }
 });
@@ -56066,6 +56120,34 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", [
+                  _vm._m(0),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.bpm,
+                        expression: "bpm"
+                      }
+                    ],
+                    attrs: { type: "number", min: "60", max: "250" },
+                    domProps: { value: _vm.bpm },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.bpm = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "p-2 rounded-lg bg-blue-100 mt-3" }, [
                   _c("h4", { staticClass: "text-lg text-blue-600 font-bold" }, [
                     _vm._v("Filter")
@@ -56175,51 +56257,139 @@ var render = function() {
                       [_vm._v("Left")]
                     ),
                     _vm._v(" "),
-                    _c("label", [
-                      _c("small", [
-                        _c("b", [_vm._v("Delay Time")]),
-                        _vm._v(
-                          ": " +
-                            _vm._s(_vm.params.delay_time.left * 1000) +
-                            "ms"
-                        )
-                      ]),
+                    _c("div", [
+                      _vm._m(1),
                       _c("br"),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.params.delay_time.left,
-                            expression: "params.delay_time.left"
+                      _c(
+                        "button",
+                        {
+                          staticClass: "font-bold mr-4",
+                          class: [
+                            _vm.params.delayTimeMode.left === "notes"
+                              ? "text-orange-500"
+                              : "text-grey-500"
+                          ],
+                          on: {
+                            click: function($event) {
+                              _vm.params.delayTimeMode.left = "notes"
+                            }
                           }
-                        ],
-                        attrs: {
-                          type: "range",
-                          min: "0",
-                          max: "1",
-                          step: "0.001"
                         },
-                        domProps: { value: _vm.params.delay_time.left },
-                        on: {
-                          change: function($event) {
-                            return _vm.delayFX.set(
-                              "delay_time",
-                              "left",
-                              _vm.params.delay_time.left
-                            )
-                          },
-                          __r: function($event) {
-                            return _vm.$set(
-                              _vm.params.delay_time,
-                              "left",
-                              $event.target.value
-                            )
+                        [_vm._v("Notes")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "font-bold",
+                          class: [
+                            _vm.params.delayTimeMode.left === "seconds"
+                              ? "text-orange-500"
+                              : "text-grey-500"
+                          ],
+                          on: {
+                            click: function($event) {
+                              _vm.params.delayTimeMode.left = "seconds"
+                            }
                           }
-                        }
-                      })
+                        },
+                        [_vm._v("Seconds")]
+                      )
                     ]),
+                    _vm._v(" "),
+                    _vm.params.delayTimeMode.left === "seconds"
+                      ? _c("label", [
+                          _c("small", [
+                            _c("b", [_vm._v("Delay Time")]),
+                            _vm._v(
+                              ": " +
+                                _vm._s(_vm.params.delay_time.left * 1000) +
+                                "ms"
+                            )
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.params.delay_time.left,
+                                expression: "params.delay_time.left"
+                              }
+                            ],
+                            attrs: {
+                              type: "range",
+                              min: "0",
+                              max: "1",
+                              step: "0.001"
+                            },
+                            domProps: { value: _vm.params.delay_time.left },
+                            on: {
+                              change: function($event) {
+                                return _vm.delayFX.set(
+                                  "delay_time",
+                                  "left",
+                                  _vm.params.delay_time.left
+                                )
+                              },
+                              __r: function($event) {
+                                return _vm.$set(
+                                  _vm.params.delay_time,
+                                  "left",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      : _vm.params.delayTimeMode.left === "notes"
+                      ? _c(
+                          "label",
+                          [
+                            _c("small", [
+                              _c("b", [_vm._v("Delay Time")]),
+                              _vm._v(
+                                ": " +
+                                  _vm._s(_vm.params.delay_time.left * 1000) +
+                                  "ms"
+                              )
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm._l(_vm.notevals, function(note) {
+                              return _c(
+                                "button",
+                                {
+                                  staticClass: "mr-2",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.sendDelayNotes("left", note)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "small",
+                                    {
+                                      class: [
+                                        _vm.params.delay_time.left ===
+                                        _vm.noteToTime(note)
+                                          ? "font-bold"
+                                          : ""
+                                      ]
+                                    },
+                                    [_vm._v(_vm._s(note))]
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
                     _c("label", [
@@ -56335,51 +56505,141 @@ var render = function() {
                       [_vm._v("Right")]
                     ),
                     _vm._v(" "),
-                    _c("label", [
-                      _c("small", [
-                        _c("b", [_vm._v("Delay Time")]),
-                        _vm._v(
-                          ": " +
-                            _vm._s(_vm.params.delay_time.right * 1000) +
-                            "ms"
-                        )
-                      ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._m(2),
                       _c("br"),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.params.delay_time.right,
-                            expression: "params.delay_time.right"
+                      _c(
+                        "button",
+                        {
+                          staticClass: "font-bold mr-4",
+                          class: [
+                            _vm.params.delayTimeMode.right === "notes"
+                              ? "text-green-500"
+                              : "text-grey-500"
+                          ],
+                          on: {
+                            click: function($event) {
+                              _vm.params.delayTimeMode.right = "notes"
+                            }
                           }
-                        ],
-                        attrs: {
-                          type: "range",
-                          min: "0",
-                          max: "1",
-                          step: "0.001"
                         },
-                        domProps: { value: _vm.params.delay_time.right },
-                        on: {
-                          change: function($event) {
-                            return _vm.delayFX.set(
-                              "delay_time",
-                              "right",
-                              _vm.params.delay_time.right
-                            )
-                          },
-                          __r: function($event) {
-                            return _vm.$set(
-                              _vm.params.delay_time,
-                              "right",
-                              $event.target.value
-                            )
+                        [_vm._v("Notes")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "font-bold",
+                          class: [
+                            _vm.params.delayTimeMode.right === "seconds"
+                              ? "text-green-500"
+                              : "text-grey-500"
+                          ],
+                          on: {
+                            click: function($event) {
+                              _vm.params.delayTimeMode.right = "seconds"
+                            }
                           }
-                        }
-                      })
+                        },
+                        [_vm._v("Seconds")]
+                      )
                     ]),
+                    _vm._v(" "),
+                    _vm.params.delayTimeMode.right === "seconds"
+                      ? _c("label", [
+                          _c("small", [
+                            _c("b", [_vm._v("Delay Time")]),
+                            _vm._v(
+                              ": " +
+                                _vm._s(_vm.params.delay_time.right * 1000) +
+                                "ms"
+                            )
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.params.delay_time.right,
+                                expression: "params.delay_time.right"
+                              }
+                            ],
+                            attrs: {
+                              type: "range",
+                              min: "0",
+                              max: "1",
+                              step: "0.001"
+                            },
+                            domProps: { value: _vm.params.delay_time.right },
+                            on: {
+                              change: function($event) {
+                                return _vm.delayFX.set(
+                                  "delay_time",
+                                  "right",
+                                  _vm.params.delay_time.right
+                                )
+                              },
+                              __r: function($event) {
+                                return _vm.$set(
+                                  _vm.params.delay_time,
+                                  "right",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      : _vm.params.delayTimeMode.right === "notes"
+                      ? _c(
+                          "label",
+                          [
+                            _c("small", [
+                              _c("b", [_vm._v("Delay Time")]),
+                              _vm._v(
+                                ": " +
+                                  _vm._s(_vm.params.delay_time.right * 1000) +
+                                  "ms"
+                              )
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm._l(_vm.notevals, function(note) {
+                              return _c(
+                                "button",
+                                {
+                                  staticClass: "mr-2",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.sendDelayNotes("right", note)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "small",
+                                    {
+                                      class: [
+                                        _vm.params.delay_time.right ===
+                                        _vm.noteToTime(note)
+                                          ? "font-bold"
+                                          : ""
+                                      ]
+                                    },
+                                    [_vm._v(_vm._s(note))]
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
                     _c("label", [
@@ -56500,7 +56760,26 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [_c("b", [_vm._v("BPM")]), _vm._v(":")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [_c("b", [_vm._v("Delay Time type")]), _vm._v(":")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [_c("b", [_vm._v("Delay Time type")]), _vm._v(":")])
+  }
+]
 render._withStripped = true
 
 
