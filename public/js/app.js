@@ -5300,6 +5300,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56257,6 +56258,8 @@ var render = function() {
                       [_vm._v("Left")]
                     ),
                     _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
                     _c("div", [
                       _vm._m(1),
                       _c("br"),
@@ -56352,7 +56355,11 @@ var render = function() {
                               _c("b", [_vm._v("Delay Time")]),
                               _vm._v(
                                 ": " +
-                                  _vm._s(_vm.params.delay_time.left * 1000) +
+                                  _vm._s(
+                                    Math.round(
+                                      _vm.params.delay_time.left * 1000
+                                    )
+                                  ) +
                                   "ms"
                               )
                             ]),
@@ -56602,7 +56609,11 @@ var render = function() {
                               _c("b", [_vm._v("Delay Time")]),
                               _vm._v(
                                 ": " +
-                                  _vm._s(_vm.params.delay_time.right * 1000) +
+                                  _vm._s(
+                                    Math.round(
+                                      _vm.params.delay_time.right * 1000
+                                    )
+                                  ) +
                                   "ms"
                               )
                             ]),

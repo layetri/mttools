@@ -40,6 +40,7 @@
         <div class="w-1/2 pr-2">
           <div class="p-4 bg-orange-200 rounded-md border-r-2 border-orange-500">
             <h4 class="text-xl text-orange-600 font-bold">Left</h4>
+            <br>
 
             <div>
               <small><b>Delay Time type</b>:</small><br>
@@ -54,7 +55,7 @@
             </label>
 
             <label v-else-if="params.delayTimeMode.left === 'notes'">
-              <small><b>Delay Time</b>: {{ params.delay_time.left * 1000 }}ms</small><br>
+              <small><b>Delay Time</b>: {{ Math.round(params.delay_time.left * 1000) }}ms</small><br>
               <button class="mr-2" v-for="note in notevals" @click="sendDelayNotes('left', note)">
                 <small :class="[params.delay_time.left === noteToTime(note) ? 'font-bold' : '']">{{note}}</small>
               </button>
@@ -93,7 +94,7 @@
             </label>
 
             <label v-else-if="params.delayTimeMode.right === 'notes'">
-              <small><b>Delay Time</b>: {{ params.delay_time.right * 1000 }}ms</small><br>
+              <small><b>Delay Time</b>: {{ Math.round(params.delay_time.right * 1000) }}ms</small><br>
               <button class="mr-2" v-for="note in notevals" @click="sendDelayNotes('right', note)">
                 <small :class="[params.delay_time.right === noteToTime(note) ? 'font-bold' : '']">{{note}}</small>
               </button>
