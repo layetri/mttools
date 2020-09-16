@@ -33,6 +33,7 @@
         exps: [
             {url: 'roll', name: 'r0LL (SYSBAS Eindopdracht 19-20)', type: ['assignment', 'blue'], lang: ['P5js', 'pink']},
             {url: 'ko2a-1', name: 'KO2a MakerSkill 1: Live Looping', type: ['assignment', 'blue'], lang: ['tonejs', 'teal']},
+            {url: 'ko2a-2', name: 'KO2a MakerSkill 2: Complex Delay', type: ['assignment', 'blue'], lang: ['tonejs', 'teal']},
             //{url: '', name: '', type: ['', ''], lang: ['', '']},
         ]
       }

@@ -25,6 +25,7 @@ Vue.component('exp-vocal-synth', require('./experiments/VocalSynth.vue').default
 Vue.component('exp-editor', require('./experiments/Editor.vue').default);
 
 Vue.component('ko2a-looper', require('./projects/KO2aLooper.vue').default);
+Vue.component('ko2a-delay', require('./projects/KO2aDelay.vue').default);
 
 const app = new Vue({
   el: '#app'

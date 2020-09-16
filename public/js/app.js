@@ -3927,6 +3927,11 @@ __webpack_require__.r(__webpack_exports__);
         name: 'KO2a MakerSkill 1: Live Looping',
         type: ['assignment', 'blue'],
         lang: ['tonejs', 'teal']
+      }, {
+        url: 'ko2a-2',
+        name: 'KO2a MakerSkill 2: Complex Delay',
+        type: ['assignment', 'blue'],
+        lang: ['tonejs', 'teal']
       } //{url: '', name: '', type: ['', ''], lang: ['', '']},
       ]
     };
@@ -5146,6 +5151,200 @@ __webpack_require__.r(__webpack_exports__);
         syntax: '(apply-transform list parallel-function serial-function note-function)'
       }]
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _public_project_ko2a_2_complexDelay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../public/project/ko2a-2/complexDelay */ "./public/project/ko2a-2/complexDelay.js");
+/* harmony import */ var tone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tone */ "./node_modules/tone/build/Tone.js");
+/* harmony import */ var tone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tone__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "KO2aDelay",
+  data: function data() {
+    return {
+      ready: false,
+      mic: null,
+      inputFilter: null,
+      recording: false,
+      delayFX: null,
+      gainNode: null,
+      osc: null,
+      player: null,
+      params: {
+        feedback: {
+          left: 0,
+          right: 0
+        },
+        crossfeed: {
+          left: 0,
+          right: 0
+        },
+        delay_time: {
+          left: 0.01,
+          right: 0.05
+        },
+        input_filter: {
+          frequency: 1000,
+          rolloff: -24
+        }
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    startCtx: function startCtx() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var masterNode;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return tone__WEBPACK_IMPORTED_MODULE_2__["start"]();
+
+              case 2:
+                masterNode = new tone__WEBPACK_IMPORTED_MODULE_2__["Gain"](0.5).toMaster();
+                _this.gainNode = new tone__WEBPACK_IMPORTED_MODULE_2__["Gain"](0.5).connect(masterNode);
+                _this.delayFX = new _public_project_ko2a_2_complexDelay__WEBPACK_IMPORTED_MODULE_1__["ComplexDelay"](masterNode);
+                _this.osc = new tone__WEBPACK_IMPORTED_MODULE_2__["MonoSynth"]().fan(_this.gainNode, _this.delayFX.src);
+                _this.mic = new tone__WEBPACK_IMPORTED_MODULE_2__["UserMedia"]().fan(_this.gainNode, _this.delayFX.src);
+                _this.inputFilter = new tone__WEBPACK_IMPORTED_MODULE_2__["Filter"](1000, 'bandpass', -24).connect(_this.delayFX.src);
+                _this.player = new tone__WEBPACK_IMPORTED_MODULE_2__["Player"]('/data/samples/kick.wav').fan(_this.gainNode, _this.delayFX.src); // Give it the go
+
+                _this.ready = true;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    toggleOsc: function toggleOsc() {
+      //this.osc.triggerAttackRelease('C4', '8n');
+      this.player.start(tone__WEBPACK_IMPORTED_MODULE_2__["Time"].now);
+    },
+    toggleMic: function toggleMic() {
+      var _this2 = this;
+
+      if (this.recording) {
+        this.mic.close();
+        this.recording = false;
+      } else {
+        this.mic.open().then(function () {
+          _this2.recording = true;
+        })["catch"](function () {
+          _this2.recording = false;
+        });
+      }
+    }
   }
 });
 
@@ -55788,6 +55987,526 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "bg-gray-100 border-2 border-teal-300 rounded-lg p-3" },
+    [
+      _vm.ready
+        ? _c("div", [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-4 mb-4 bg-blue-200 rounded-md border-r-2 border-blue-500"
+              },
+              [
+                _c("h4", { staticClass: "text-xl text-blue-600 font-bold" }, [
+                  _vm._v("Input")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "mr-2",
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleMic()
+                      }
+                    }
+                  },
+                  [
+                    !_vm.recording
+                      ? _c(
+                          "i",
+                          { staticClass: "material-icons text-gray-500" },
+                          [_vm._v("mic")]
+                        )
+                      : _c(
+                          "i",
+                          { staticClass: "material-icons text-red-500" },
+                          [_vm._v("mic_off")]
+                        )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOsc()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons text-blue-500" }, [
+                      _vm._v("graphic_eq")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.recording
+                  ? _c("span", { staticClass: "font-bold text-red-500" }, [
+                      _vm._v("listening...")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "p-2 rounded-lg bg-blue-100 mt-3" }, [
+                  _c("h4", { staticClass: "text-lg text-blue-600 font-bold" }, [
+                    _vm._v("Filter")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("small", [
+                      _c("b", [_vm._v("Center Frequency")]),
+                      _vm._v(
+                        ": " + _vm._s(_vm.params.input_filter.frequency) + "Hz"
+                      )
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.params.input_filter.frequency,
+                          expression: "params.input_filter.frequency"
+                        }
+                      ],
+                      attrs: {
+                        type: "range",
+                        min: "0",
+                        max: "5000",
+                        step: "1"
+                      },
+                      domProps: { value: _vm.params.input_filter.frequency },
+                      on: {
+                        change: function($event) {
+                          _vm.inputFilter.frequency.value =
+                            _vm.params.input_filter.frequency
+                        },
+                        __r: function($event) {
+                          return _vm.$set(
+                            _vm.params.input_filter,
+                            "frequency",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("small", [
+                      _c("b", [_vm._v("Rolloff")]),
+                      _vm._v(
+                        ": " +
+                          _vm._s(_vm.params.input_filter.rolloff) +
+                          "dB/octave"
+                      )
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.params.input_filter.rolloff,
+                          expression: "params.input_filter.rolloff"
+                        }
+                      ],
+                      attrs: {
+                        type: "range",
+                        min: "-48",
+                        max: "0",
+                        step: "12"
+                      },
+                      domProps: { value: _vm.params.input_filter.rolloff },
+                      on: {
+                        change: function($event) {
+                          _vm.inputFilter.rolloff =
+                            _vm.params.input_filter.rolloff
+                        },
+                        __r: function($event) {
+                          return _vm.$set(
+                            _vm.params.input_filter,
+                            "rolloff",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _c("br")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex" }, [
+              _c("div", { staticClass: "w-1/2 pr-2" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-4 bg-orange-200 rounded-md border-r-2 border-orange-500"
+                  },
+                  [
+                    _c(
+                      "h4",
+                      { staticClass: "text-xl text-orange-600 font-bold" },
+                      [_vm._v("Left")]
+                    ),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Delay Time")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(_vm.params.delay_time.left * 1000) +
+                            "ms"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.delay_time.left,
+                            expression: "params.delay_time.left"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "1",
+                          step: "0.001"
+                        },
+                        domProps: { value: _vm.params.delay_time.left },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "delay_time",
+                              "left",
+                              _vm.params.delay_time.left
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.delay_time,
+                              "left",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Feedback")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(Math.round(_vm.params.feedback.left * 100)) +
+                            "%"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.feedback.left,
+                            expression: "params.feedback.left"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "0.9",
+                          step: "0.01"
+                        },
+                        domProps: { value: _vm.params.feedback.left },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "feedback",
+                              "left",
+                              _vm.params.feedback.left
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.feedback,
+                              "left",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Crossfeed")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(
+                              Math.round(_vm.params.crossfeed.left * 100)
+                            ) +
+                            "%"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.crossfeed.left,
+                            expression: "params.crossfeed.left"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "0.9",
+                          step: "0.01"
+                        },
+                        domProps: { value: _vm.params.crossfeed.left },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "crossfeed",
+                              "left",
+                              _vm.params.crossfeed.left
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.crossfeed,
+                              "left",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br")
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/2 pl-2" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-4 bg-green-200 rounded-md border-r-2 border-green-500"
+                  },
+                  [
+                    _c(
+                      "h4",
+                      { staticClass: "text-xl text-green-600 font-bold" },
+                      [_vm._v("Right")]
+                    ),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Delay Time")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(_vm.params.delay_time.right * 1000) +
+                            "ms"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.delay_time.right,
+                            expression: "params.delay_time.right"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "1",
+                          step: "0.001"
+                        },
+                        domProps: { value: _vm.params.delay_time.right },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "delay_time",
+                              "right",
+                              _vm.params.delay_time.right
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.delay_time,
+                              "right",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Feedback")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(
+                              Math.round(_vm.params.feedback.right * 100)
+                            ) +
+                            "%"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.feedback.right,
+                            expression: "params.feedback.right"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "0.9",
+                          step: "0.01"
+                        },
+                        domProps: { value: _vm.params.feedback.right },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "feedback",
+                              "right",
+                              _vm.params.feedback.right
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.feedback,
+                              "right",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("small", [
+                        _c("b", [_vm._v("Crossfeed")]),
+                        _vm._v(
+                          ": " +
+                            _vm._s(
+                              Math.round(_vm.params.crossfeed.right * 100)
+                            ) +
+                            "%"
+                        )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.params.crossfeed.right,
+                            expression: "params.crossfeed.right"
+                          }
+                        ],
+                        attrs: {
+                          type: "range",
+                          min: "0",
+                          max: "0.9",
+                          step: "0.01"
+                        },
+                        domProps: { value: _vm.params.crossfeed.right },
+                        on: {
+                          change: function($event) {
+                            return _vm.delayFX.set(
+                              "crossfeed",
+                              "right",
+                              _vm.params.crossfeed.right
+                            )
+                          },
+                          __r: function($event) {
+                            return _vm.$set(
+                              _vm.params.crossfeed,
+                              "right",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _c("br")
+                  ]
+                )
+              ])
+            ])
+          ])
+        : _c("div", [
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.startCtx()
+                  }
+                }
+              },
+              [_vm._v("start")]
+            )
+          ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/projects/KO2aLooper.vue?vue&type=template&id=b561b3aa&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/projects/KO2aLooper.vue?vue&type=template&id=b561b3aa&scoped=true& ***!
@@ -68859,6 +69578,95 @@ module.exports = yeast;
 
 /***/ }),
 
+/***/ "./public/project/ko2a-2/complexDelay.js":
+/*!***********************************************!*\
+  !*** ./public/project/ko2a-2/complexDelay.js ***!
+  \***********************************************/
+/*! exports provided: ComplexDelay */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComplexDelay", function() { return ComplexDelay; });
+/* harmony import */ var tone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tone */ "./node_modules/tone/build/Tone.js");
+/* harmony import */ var tone__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tone__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var ComplexDelay = /*#__PURE__*/function () {
+  function ComplexDelay(destination) {
+    _classCallCheck(this, ComplexDelay);
+
+    // Set parameters
+    this.rightDelay = 0.1;
+    this.leftDelay = 0.05;
+    this.leftFilterFrequency = 750;
+    this.rightFilterFrequency = 750; // Initialize output node
+
+    this.node = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(0.1).connect(destination);
+    this.left = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Panner(-1).connect(this.node);
+    this.right = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Panner(1).connect(this.node);
+    this.src = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(); // Initialize main delay nodes
+
+    this.delayNodeRight = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Delay(this.rightDelay, 5);
+    this.delayNodeLeft = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Delay(this.leftDelay, 5); // Initialize left and right low pass filter
+
+    this.filterNodeRight = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Filter(this.rightFilterFrequency, 'lowpass', -24).connect(this.delayNodeRight);
+    this.filterNodeLeft = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Filter(this.leftFilterFrequency, 'lowpass', -24).connect(this.delayNodeLeft); // Initialize left and right feedback
+
+    this.feedbackNodeRight = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(0).connect(this.filterNodeRight);
+    this.feedbackNodeLeft = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(0).connect(this.filterNodeLeft); // Initialize left and right crossfeed
+
+    this.crossfeedNodeRight = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(0).connect(this.left);
+    this.crossfeedNodeLeft = new tone__WEBPACK_IMPORTED_MODULE_0___default.a.Gain(0).connect(this.right); // Connect the main nodes
+
+    this.delayNodeRight.fan(this.right, this.feedbackNodeRight, this.crossfeedNodeRight);
+    this.delayNodeLeft.fan(this.left, this.feedbackNodeLeft, this.crossfeedNodeLeft);
+    this.src.fan(this.delayNodeLeft, this.delayNodeRight);
+  } // Collection method to ease parameter manipulation
+
+
+  _createClass(ComplexDelay, [{
+    key: "set",
+    value: function set(parameter, side, value) {
+      console.log('setting ' + parameter + ' on ' + side + ' to: ' + value);
+
+      if (value < 1.0 && value > 0.0) {
+        // Collection for feedback
+        if (parameter === 'feedback') {
+          if (side === 'left') {
+            this.feedbackNodeLeft.gain.value = value;
+          } else if (side === 'right') {
+            this.feedbackNodeRight.gain.value = value;
+          }
+        } // Collection for crossfeed
+        else if (parameter === 'crossfeed') {
+            if (side === 'left') {
+              this.crossfeedNodeLeft.gain.value = value;
+            } else if (side === 'right') {
+              this.crossfeedNodeRight.gain.value = value;
+            }
+          } // Collection for delay time
+          else if (parameter === 'delay_time') {
+              if (side === 'left') {
+                this.delayNodeLeft.delayTime.value = value;
+              } else if (side === 'right') {
+                this.delayNodeRight.delayTime.value = value;
+              }
+            }
+      }
+    }
+  }]);
+
+  return ComplexDelay;
+}();
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -68889,6 +69697,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('scheme-lilypond-docs', __w
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('exp-vocal-synth', __webpack_require__(/*! ./experiments/VocalSynth.vue */ "./resources/js/experiments/VocalSynth.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('exp-editor', __webpack_require__(/*! ./experiments/Editor.vue */ "./resources/js/experiments/Editor.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ko2a-looper', __webpack_require__(/*! ./projects/KO2aLooper.vue */ "./resources/js/projects/KO2aLooper.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ko2a-delay', __webpack_require__(/*! ./projects/KO2aDelay.vue */ "./resources/js/projects/KO2aDelay.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
@@ -69528,6 +70337,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SchemeLilypondDocs_vue_vue_type_template_id_23c147ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SchemeLilypondDocs_vue_vue_type_template_id_23c147ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/projects/KO2aDelay.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/projects/KO2aDelay.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true& */ "./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true&");
+/* harmony import */ var _KO2aDelay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KO2aDelay.vue?vue&type=script&lang=js& */ "./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _KO2aDelay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "10b36899",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/projects/KO2aDelay.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KO2aDelay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./KO2aDelay.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/projects/KO2aDelay.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KO2aDelay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/projects/KO2aDelay.vue?vue&type=template&id=10b36899&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KO2aDelay_vue_vue_type_template_id_10b36899_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
