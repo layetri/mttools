@@ -2,7 +2,7 @@
 <html lang="en">
   @include('parts.head')
 
-  <body>
+  <body class="bg-gray-100">
     @include('parts.nav')
 
     <div class="container mx-auto mt-20 p-2" id="app">
