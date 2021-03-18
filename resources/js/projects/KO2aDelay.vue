@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 border-2 border-teal-300 rounded-lg p-3">
+  <div class="bg-white border-2 border-teal-300 rounded-lg p-3">
     <div v-if="ready">
       <div class="p-4 mb-4 bg-blue-200 rounded-md border-r-2 border-blue-500">
         <h4 class="text-xl text-blue-600 font-bold">Input</h4>
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-  import {ComplexDelay} from '../../../public/project/ko2a-2/complexDelay';
+  import {ComplexDelay} from '../../../public/project/ko2a/complexDelay';
   import * as Tone from "tone";
 
   export default {

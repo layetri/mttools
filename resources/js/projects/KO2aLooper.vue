@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 rounded border-r-2 border-teal-300 bg-gray-100 mt-4">
+  <div class="p-4 rounded border-r-2 border-teal-300 bg-white mt-4">
     <div class="w-full text-center" v-if="!ready">
       <h5 class="font-bold text-teal-500 cursor-pointer" @click="startCtx()">Start the audio context</h5>
     </div>

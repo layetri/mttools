@@ -17,6 +17,7 @@ Vue.component('guides-list', require('./content/GuidesList.vue').default);
 Vue.component('tools-list', require('./content/ToolsList.vue').default);
 Vue.component('experiments-list', require('./content/ExperimentsList.vue').default);
 Vue.component('projects-list', require('./content/ProjectList.vue').default);
+Vue.component('project-view', require('./content/ProjectPage.vue').default);
 Vue.component('docs-function', require('./content/DocsFunction.vue').default);
 
 Vue.component('scheme-lilypond-docs', require('./guides/SchemeLilypondDocs.vue').default);
@@ -26,6 +27,7 @@ Vue.component('exp-editor', require('./experiments/Editor.vue').default);
 
 Vue.component('ko2a-looper', require('./projects/KO2aLooper.vue').default);
 Vue.component('ko2a-delay', require('./projects/KO2aDelay.vue').default);
+Vue.component('ko2a-granular', require('./projects/KO2aGranular.vue').default);
 
 const app = new Vue({
   el: '#app'

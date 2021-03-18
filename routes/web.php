@@ -56,9 +56,19 @@ Route::prefix('projects')->group(function() {
     return view('pages.projects');
   });
 
-  Route::get('{uri}', function($uri) {
+  Route::get('{uri}/run', function($uri) {
     return view('projects.'.$uri);
   });
+
+  Route::get('{uri}', function($uri) {
+    $data['project'] = $uri;
+    return view('projects.view')->with($data);
+  });
+});
+
+Route::prefix('fetch')->group(function() {
+  Route::get('projects', 'ProjectController@fetch');
+  Route::get('project/{project}', 'ProjectController@loadOne');
 });
 
 Route::prefix('midimeet')->group(function() {
