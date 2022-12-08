@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>live looper | mttools</title>
+<title>live looper | layetri</title>
 <link rel="stylesheet" href="{{secure_asset('project/ko2a-1/style.css')}}">
 
 @section('content')

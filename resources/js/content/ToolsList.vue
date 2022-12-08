@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table-auto">
+    <table class="table-auto w-full">
       <thead>
         <tr>
           <th class="px-4 py-2">Title</th>
@@ -10,13 +10,13 @@
       </thead>
       <tbody>
         <tr v-for="tool in tools">
-          <td class="border px-4 py-2">
+          <td class="border px-4 py-2 w-3/5">
             <a :href="'/tools/'+tool.url" v-html="tool.name"></a>
           </td>
-          <td class="border px-4 py-2 text-center">
+          <td class="border px-2 py-2 w-1/5 text-center">
             <span class="border rounded text-xs uppercase px-4 py-1" :class="'bg-'+tool.type[1]+'-100 text-'+tool.type[1]+'-400 border-'+tool.type[1]+'-300'" v-html="tool.type[0]"></span>
           </td>
-          <td class="border px-4 py-2 text-center">
+          <td class="border px-2 py-2 w-1/5 text-center">
             <span class="border rounded text-xs uppercase px-4 py-1" :class="'bg-'+tool.course[1]+'-100 text-'+tool.course[1]+'-400 border-'+tool.course[1]+'-300'" v-html="tool.course[0]"></span>
           </td>
         </tr>

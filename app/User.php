@@ -1,6 +1,6 @@
 <?php
 
-  namespace App\Models;
+  namespace App;
 
   use Illuminate\Contracts\Auth\MustVerifyEmail;
   use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -8,7 +8,7 @@
 
   class User extends Authenticatable
   {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,4 +34,12 @@
      * @var array
      */
     protected $casts = [];
+
+    public function isAdmin() {
+      return $this->permission_level === 0;
+    }
+
+    public function posts() {
+      return $this->hasMany(Post::class);
+    }
   }

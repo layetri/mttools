@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>tools | mttools</title>
+<title>tools | layetri</title>
 
 @section('content')
   <h1 class="text-3xl font-light">tools</h1>

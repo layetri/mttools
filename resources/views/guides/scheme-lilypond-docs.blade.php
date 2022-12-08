@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>Scheme to LilyPond | mttools</title>
+<title>Scheme to LilyPond | layetri</title>
 <link rel="stylesheet" href="{{asset('css/guide.css')}}">
 
 @section('content')

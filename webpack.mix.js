@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
+require('mix-tailwindcss');
 const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,11 +14,11 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js').vue()
     .sass('resources/sass/app.scss', 'public/css')
+    .tailwind()
     .options({
-      processCssUrls: false,
-      postCss: [
-        tailwindcss('./tailwind.config.js'),
-      ]
+      terser: {
+        extractComments: false,
+      }
     });

@@ -16,14 +16,33 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 });
+Route::get('whats-in-my-rack', function () {
+    return view('pages.rack');
+});
+Route::get('donut', function () {
+    return view('pages.donut');
+});
 
-Route::prefix('guides')->group(function() {
+Route::prefix('student')->group(function() {
   Route::get('/', function() {
-    return view('pages.guides');
+    return view('pages.student');
   });
 
-  Route::get('{uri}', function($uri) {
-    return view('guides.'.$uri);
+  Route::prefix('guide')->group(function() {
+    Route::get('{uri}', function($uri) {
+      return view('guides.'.$uri);
+    });
+  });
+});
+
+Route::prefix('blog')->group(function() {
+  Route::get('/', function () {
+    return view('blog.list');
+  });
+
+  Route::get('post/{post}', function($post) {
+    $data['post'] = $post;
+    return view('blog.post')->with($data);
   });
 });
 
@@ -66,9 +85,34 @@ Route::prefix('projects')->group(function() {
   });
 });
 
+Route::get('login', function() {
+  return view('admin.login');
+})->middleware(['redirectIfLoggedIn']);
+Route::post('login', 'AuthController@login');
+
+Route::middleware(['administrator'])->group(function () {
+  Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+      return view('admin.view');
+    });
+  });
+
+  Route::prefix('fetch')->group(function() {
+    Route::get('blog/posts', 'PostController@fetchAllAdmin');
+  });
+  Route::prefix('make')->group(function() {
+    Route::post('project', 'ProjectController@store');
+    Route::post('blog/post', 'PostController@store');
+  });
+});
+
 Route::prefix('fetch')->group(function() {
   Route::get('projects', 'ProjectController@fetch');
+  Route::get('projects/featured', 'ProjectController@fetchFeatured');
   Route::get('project/{project}', 'ProjectController@loadOne');
+
+  Route::get('blog/posts', 'PostController@fetchAll');
+  Route::get('blog/post/{post}', 'PostController@fetchOne');
 });
 
 Route::prefix('midimeet')->group(function() {

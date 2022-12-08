@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>Using IDEA | mttools</title>
+<title>Using IDEA | layetri</title>
 <link rel="stylesheet" href="{{asset('css/guide.css')}}">
 
 @section('content')

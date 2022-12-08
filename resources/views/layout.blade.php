@@ -2,11 +2,13 @@
 <html lang="en">
   @include('parts.head')
 
-  <body class="bg-gray-100">
-    @include('parts.nav')
+  <body class="bg-gray-100 text-gray-900 dark:text-gray-200 dark:bg-gray-900 h-full top-0">
+    <div id="app">
+      @include('parts.nav')
 
-    <div class="container mx-auto mt-20 p-2" id="app">
-      @yield('content')
+      <div class="container mx-auto py-20 p-2 h-full">
+        @yield('content')
+      </div>
     </div>
 
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>

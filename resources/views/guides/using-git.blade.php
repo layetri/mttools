@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>Using Git | mttools</title>
+<title>Using Git | layetri</title>
 <link rel="stylesheet" href="{{asset('css/guide.css')}}">
 
 @section('content')

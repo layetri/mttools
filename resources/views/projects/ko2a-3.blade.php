@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>granular effect | mttools</title>
+<title>granular effect | layetri</title>
 <link rel="stylesheet" href="{{secure_asset('project/ko2a-1/style.css')}}">
 
 @section('content')

@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>projects | mttools</title>
+<title>projects | layetri</title>
 
 @section('content')
   <div class="p-4">

@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>{{$project}} | mttools</title>
+<title>{{$project}} | layetri</title>
 
 @section('content')
   <project-view pid="{{$project}}"></project-view>

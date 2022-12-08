@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>MidiMeet | mttools</title>
+<title>MidiMeet | layetri</title>
 
 @section('content')
   <div class="w-100">

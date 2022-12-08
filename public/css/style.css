@@ -1,0 +1,43 @@
+
+.layoutEngine h1, .layoutEngine h2, .layoutEngine h3, .layoutEngine h4, .layoutEngine h5, .layoutEngine h6, .layoutEngine p {
+    padding: 1em 0;
+    margin: 0;
+    margin-bottom: -0.9em;
+    line-height: 1.5em;
+    outline: none;
+}
+
+.layoutEngine ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 16px;
+}
+
+.layoutEngine h1 {
+     font-weight: 700;
+     font-size: 2.25rem;
+     line-height: 2.5rem;
+ }
+.layoutEngine h2 {
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+.layoutEngine h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.layoutEngine h4 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.layoutEngine h5 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.layoutEngine h6 {
+    font-weight: 700;
+}

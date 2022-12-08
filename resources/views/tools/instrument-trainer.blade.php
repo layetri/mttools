@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>instrument trainer | mttools</title>
+<title>instrument trainer | layetri</title>
 
 @section('content')
   <div class="mx-auto">

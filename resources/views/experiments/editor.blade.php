@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>vocal synth | mttools</title>
+<title>vocal synth | layetri</title>
 
 @section('content')
   <div class="lg:w-1/3 xs:w-100">

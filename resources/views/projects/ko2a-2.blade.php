@@ -1,6 +1,6 @@
 @extends('layout')
 
-<title>complex delay | mttools</title>
+<title>complex delay | layetri</title>
 <link rel="stylesheet" href="{{secure_asset('project/ko2a-1/style.css')}}">
 
 @section('content')
