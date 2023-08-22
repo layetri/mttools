@@ -16,6 +16,7 @@ Vue.use(Vue_mq, {
 });
 
 Vue.component('navbar', require('./parts/Nav.vue').default);
+Vue.component('home', require('./pages/Home.vue').default);
 Vue.component('interval-trainer', require('./tools/IntervalTrainer.vue').default);
 Vue.component('instrument-trainer', require('./tools/InstrumentTrainer.vue').default);
 

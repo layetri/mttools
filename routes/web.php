@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.new_home');
 });
 Route::get('whats-in-my-rack', function () {
     return view('pages.rack');
