@@ -129,7 +129,7 @@
       </div>
 
       <div class="px-2 mt-4">
-        <small class="text-gray-400">Copyright &copy; 2020 Dani&euml;l Kamp @ HKU University of the Arts Utrecht.</small>
+        <small class="text-gray-400">Copyright &copy; 2020 Layetri @ HKU University of the Arts Utrecht.</small>
       </div>
     </div>
   </div>

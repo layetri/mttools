@@ -11,7 +11,7 @@
 
     <div class="w-full lg:w-2/3 mx-auto p-8 mb-8">
       <div id="intro" class="lg:w-2/3">
-        <h4 class="text-xl font-semibold"><span class="font-bold text-yellow-600">Hi!</span> I'm Dani&euml;l.</h4>
+        <h4 class="text-xl font-semibold"><span class="font-bold text-yellow-600">Hi!</span> I'm Layetri.</h4>
         <p class="text-lg font-light">For my third year project at HKU (University of the Arts Utrecht, the Netherlands), I've spent the past three months working full-time on building my own digital synthesizer. This page tells the story of its creation, details future plans, and explains how you can obtain your very own Donut!</p>
       </div>
     </div>
@@ -275,7 +275,7 @@
       <div id="build-instructions">
         <h1 class="font-bold text-4xl mb-4">That's amazing, where can I get it?</h1>
         <div class="lg:w-2/3">
-          <p class="mb-2">Now hold on to your horses. This project is still in active development, and there are currently no production builds available. However, if you're crazy enough, you can <i>attempt</i> to build it yourself, for which I made build targets for <b>macOS</b> and <b>Linux</b>.<p>
+          <p class="mb-2">Now hold on to your horses. This project is still in active development, and there are currently no production builds available. However, if you're crazy enough, you can <i>attempt</i> to build it yourself, for which I made build targets for <b>macOS</b> and <b>Linux</b>.</p>
           <p class="text-sm text-yellow-600 mb-6"><b>Please note</b> that I do <b>not</b> provide tech support, and building Donut from source code is completely at your own risk. If you discover a bug (of which there are <i>plenty</i>), please open an issue on GitHub. If you can think of a solution, feel free to create a pull request too!</p>
 
 
@@ -413,7 +413,7 @@
               </div>
 
               <div class="text-center text-sm text-gray-600">
-                Copyright &copy; {{new Date().getFullYear()}} Dani&euml;l Kamp a.k.a. Layetri. All rights reserved.
+                Copyright &copy; {{new Date().getFullYear()}} Layetri. All rights reserved.
               </div>
             </div>
           </div>

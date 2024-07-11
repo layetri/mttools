@@ -25,7 +25,7 @@
   <body>
     <h4 class="absolute text-white ml-2 mt-10 bit-regular text-4xl">r0LL</h4>
     <h4 class="absolute text-white ml-2 mt-20 bit-regular text-lg">
-      <small class="text-sm">&copy;</small> 2020 Elmer Makkinga and Daniel Kamp
+      <small class="text-sm">&copy;</small> 2020 unluca and Layetri
     </h4>
     <input class="absolute px-3 m-2 bit-regular text-xl" style="width: 4rem;" type="number" value="120" id="len_box" placeholder="length">
 
